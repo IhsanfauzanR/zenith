@@ -1,62 +1,76 @@
-# Zenith — Prototipe Interaktif
+# Zenith
 
-Aplikasi mobile manajemen tugas berbasis kesejahteraan (wellbeing) untuk tugas besar mata kuliah **Interaksi Manusia & Komputer**.
+> Ruang istirahat untuk pikiranmu.
 
-Konsep inti: **Mental Thermostat**. Setiap hari user memilih tingkat energi (Cerah / Berawan / Redup), dan aplikasi beradaptasi — jumlah tugas, tone bahasa, dan ukuran kartu mengikuti energi yang dipilih. Tujuannya mengurangi beban kognitif dan rasa bersalah, bukan memaksa produktivitas.
+**Zenith** adalah prototipe interaktif aplikasi mobile manajemen tugas berbasis kesejahteraan (wellbeing), dibuat untuk tugas besar mata kuliah **Interaksi Manusia & Komputer (IMK)**. Bukan to-do list biasa — Zenith dirancang untuk mengurangi beban kognitif dan rasa bersalah, bukan memaksa produktivitas.
 
-## Stack
+---
 
-- React 19 + Vite
-- CSS Modules / plain CSS dengan CSS variables (design tokens)
-- Context API + useReducer untuk state global
-- Tanpa backend — semua data dummy di `src/data/data.js`
-- Mobile-first (390px) dibungkus device frame
+## Konsep — "Mental Thermostat"
 
-## Cara setup di laptop kamu
+Setiap hari, user memilih tingkat energi mereka dalam metafora cuaca: **☀️ Cerah**, **⛅ Berawan**, atau **🌙 Redup**. Aplikasi **beradaptasi** terhadap pilihan ini — menyesuaikan jumlah tugas yang ditampilkan, tone bahasa, dan intensitas visual.
 
-Pastikan **Node.js 18+** sudah terinstall ([cek di nodejs.org](https://nodejs.org/)).
+| Energi | Tampilan Hari Ini | Tone bahasa |
+|---|---|---|
+| ☀️ Cerah | 10 tugas (semua prioritas), kartu normal | "Mari ambil yang berat dulu. Kamu bisa pelan-pelan." |
+| ⛅ Berawan | 5 tugas (campuran), kartu normal | "Lima tugas. Bukan empat belas." |
+| 🌙 Redup | 3 tugas (hanya ringan), kartu lebih besar & lega | "Hari ini cukup tiga langkah kecil." |
 
-```bash
-# 1. Clone repo
-git clone https://github.com/IhsanfauzanR/-zenith.git
-cd -zenith
+Ganti energi → Home langsung me-render ulang. Tugas yang "disembunyikan" tetap aman, tidak ke mana-mana.
 
-# 2. Install dependencies (sekali saja, ~1-2 menit)
-npm install
+---
 
-# 3. Jalankan dev server
-npm run dev
-```
+## Tech stack
 
-Buka URL yang muncul di terminal (biasanya `http://localhost:5173/`) di browser.
+- **React 19** + **Vite** (JavaScript)
+- **Plain CSS** dengan CSS variables sebagai design tokens — tanpa framework UI
+- **Context API + useReducer** untuk state global (energi, screen aktif, settings, tasks, reflections)
+- **Routing state-based** — satu state `currentScreen`, tanpa react-router
+- **Font:** Inter (via `@fontsource/inter`)
+- **Tanpa backend** — semua data dummy di `src/data/data.js`
+- **Mobile-first** 390px, dibungkus device frame ukuran tetap (390×844) di desktop
 
-### Buka di HP (untuk demo)
+---
 
-```bash
-npm run dev -- --host
-```
+## Fitur
 
-Akan tampil dua URL:
-- `Local`   — buka di laptop
-- `Network` — buka di HP (HP harus se-WiFi dengan laptop, mis. `http://192.168.x.x:5173/`)
+### Layar (16 screen)
+- **Onboarding**: Welcome + konsep Energi
+- **Login** (tanpa autentikasi nyata — bebas isi apa saja)
+- **Energy Picker** dengan validasi disabled-state
+- **Home — Hari Ini** adaptif per energi
+- **Empty states** Today (3 varian per energi), Agenda, Refleksi
+- **Task**: Detail + Create
+- **Agenda** dengan week strip + timeline + FAB
+- **Refleksi** dengan kartu cuaca minggu, statistik, prompt + Create Reflection (mood selector 5 emoji)
+- **Profil** + 5 layar Settings (Kenyamanan visual, Pengingat lembut, Tema & tampilan, Privasi, Bantuan)
 
-## Cara pakai aplikasi
-
-1. Lewati onboarding (atau klik "Mulai perlahan" untuk preview)
-2. Login dengan email/password apa saja (tidak ada validasi nyata)
-3. Di **Energy Picker**, pilih salah satu energi: ☀️ Cerah / ⛅ Berawan / 🌙 Redup
-4. Home akan menampilkan jumlah & ukuran task yang berbeda per energi
-5. Tap chip energi di Home (mis. "⛅ Berawan · ubah") untuk ganti energi
-6. Tap task → detail. Tap FAB "+" di Agenda → buat task baru.
-7. Tab Refleksi → tulis refleksi pelan (mood selector 5 emoji)
-8. Tab Saya → 5 menu settings (semua toggle interaktif, tersimpan di context)
-   - Bonus: **Tema & tampilan** → pilih Gelap → dark mode aktif
+### Interaksi
+- Toggle interaktif dengan animasi knob — semua tersimpan di context
+- Energy chip "ubah" untuk ganti energi tanpa kembali ke picker
+- Bottom nav 4 tab (Hari Ini / Agenda / Refleksi / Saya)
+- Ukuran teks Standar/Sedang/Besar — **mengubah skala font seluruh app**
+- **Dark mode** — token CSS di-override saat tema Gelap dipilih (frame, surface, text — semua mengikuti)
+- Reduce motion respect — animasi dimatikan saat aksesibilitas aktif
 
 ### Trigger empty state untuk demo
+Double-tap pada judul `h1` di tab **Hari Ini / Agenda / Refleksi** → tampilan beralih ke versi kosong. Double-tap lagi → kembali. Gestur sengaja tersembunyi agar tidak muncul dengan sendirinya saat user biasa pakai.
 
-Di tab **Hari Ini / Agenda / Refleksi**, **double-tap pada judul h1** (mis. "Halo, Rania." / "Agenda" / "Refleksi pelan") → tampilan berubah ke versi kosong. Double-tap lagi untuk kembali.
+---
 
-Gestur sengaja tersembunyi — kamu yang demo yang tahu, agar tampilan presentasi tetap bersih.
+## Design system
+
+CSS variables di `src/styles/tokens.css`:
+
+- **Warna energi**: amber (cerah), slate (berawan), ungu (redup) — masing-masing punya soft variant
+- **Brand**: biru `#3B82F6` + indigo aksen
+- **Radii**: 14 / 16-18 / 20 / pill 28 / chip 19
+- **Typography scale**: display (32) → micro (11) dengan letter-spacing & line-height konsisten
+- **Dark mode**: override penuh untuk surface, text, border, shadow
+
+Spacing layar horizontal **32px** kiri-kanan (konten 326px dalam frame 390px). Touch target minimum 44–48px.
+
+---
 
 ## Struktur folder
 
@@ -65,24 +79,15 @@ src/
   main.jsx, App.jsx
   context/AppContext.jsx       # state global + router state-based
   data/data.js                 # TASKS, AGENDA, REFLECTIONS, ENERGY_CONFIG
-  styles/tokens.css            # CSS variables (warna, ukuran, dark mode)
+  styles/tokens.css            # CSS variables + dark mode override
   styles/global.css            # reset, typography, app shell
   components/                  # Screen, Button, Toggle, BottomNav, TaskCard, ...
-  screens/                     # 16 layar (onboarding → settings)
+  screens/                     # 16 layar
 ```
 
-## Skrip yang tersedia
+---
 
-```bash
-npm run dev       # dev server (HMR)
-npm run dev -- --host    # dev server + dapat diakses dari HP
-npm run build     # build production ke folder dist/
-npm run preview   # preview hasil build
-npm run lint      # ESLint check
-```
+## Konteks tugas
 
-## Troubleshooting
-
-- **Port 5173 sudah dipakai** — tutup proses lain di port itu, atau jalankan `npm run dev -- --port 5174`
-- **`npm install` lama / error** — pastikan koneksi internet stabil, hapus `node_modules` + `package-lock.json` lalu coba lagi
-- **Tampilan tidak seperti screenshot** — pastikan buka di browser modern (Chrome/Edge/Firefox terbaru). Internet Explorer tidak didukung.
+Tugas besar mata kuliah Interaksi Manusia & Komputer.
+Fokus pada **tampilan + interaksi visual** — bukan produk siap rilis. Semua data dummy, tanpa backend, tanpa database, tanpa autentikasi nyata. Tujuan: menerjemahkan desain statik (Figma) menjadi prototipe interaktif yang bisa didemokan untuk menunjukkan bagaimana aplikasi bekerja.
