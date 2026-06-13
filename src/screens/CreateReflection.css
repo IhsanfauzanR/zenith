@@ -1,0 +1,117 @@
+.create-reflect {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--energy-redup-soft);
+}
+
+.create-reflect__screen { background: transparent; }
+
+.create-reflect__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px var(--screen-padding) 8px;
+  background: transparent;
+}
+
+.create-reflect__close,
+.create-reflect__done {
+  font-size: calc(15px * var(--text-scale));
+  font-weight: 500;
+  padding: 8px 4px;
+}
+.create-reflect__close { color: var(--text-secondary); }
+.create-reflect__done {
+  color: var(--energy-redup);
+  font-weight: 600;
+}
+
+.create-reflect__inner {
+  padding: 14px var(--screen-padding) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-reflect__date {
+  margin: 0;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.create-reflect__q {
+  margin: 2px 0 6px;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  line-height: 1.35;
+}
+
+.create-reflect__editor {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 16px 16px;
+  box-shadow: var(--shadow-card-redup);
+  min-height: 220px;
+  display: flex;
+}
+
+.create-reflect__textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: calc(15px * var(--text-scale));
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+.create-reflect__textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.create-reflect__mood {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.create-reflect__mood-label {
+  margin: 0;
+  color: var(--text-tertiary);
+  letter-spacing: 1.8px;
+}
+
+.create-reflect__mood-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.mood-btn {
+  height: 56px;
+  border-radius: 16px;
+  background: var(--bg-surface);
+  border: 1.5px solid transparent;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 160ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+.mood-btn:active { transform: scale(0.95); }
+.mood-btn.is-selected {
+  border-color: var(--energy-redup);
+  background: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
+}
+
+.create-reflect__note {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.create-reflect__actions { margin-top: 6px; }

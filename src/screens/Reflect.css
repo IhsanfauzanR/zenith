@@ -1,0 +1,101 @@
+.reflect-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg-base);
+}
+
+.reflect-screen__inner {
+  padding: 28px var(--screen-padding) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.reflect-screen__header { display: flex; flex-direction: column; gap: 4px; }
+.reflect-screen__title { margin: 2px 0 0; }
+
+.reflect-week-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reflect-week-bubbles {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.reflect-week-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.reflect-week-bubble__dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.reflect-week-bubble__lab {
+  font-size: calc(10px * var(--text-scale));
+  color: var(--text-tertiary);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.reflect-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.reflect-stat {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+}
+.reflect-stat__num { margin: 0; }
+
+.reflect-prompt {
+  background: var(--energy-redup-soft);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px;
+  cursor: pointer;
+  transition: transform 160ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.reflect-prompt:active { transform: scale(0.99); }
+.reflect-prompt__label { margin: 0; letter-spacing: 1.8px; }
+.reflect-prompt__q { margin: 2px 0 0; color: var(--text-primary); }
+.reflect-prompt__hint { margin: 4px 0 0; }
+
+.reflect-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 8px 0;
+  gap: 10px;
+}
+.reflect-empty__title { margin: 6px 0 0; }
+.reflect-empty__body { margin: 0; max-width: 280px; }
+.reflect-empty__actions { display: flex; justify-content: center; margin-top: 6px; }

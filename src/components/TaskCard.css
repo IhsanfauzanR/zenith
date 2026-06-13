@@ -1,0 +1,93 @@
+.task-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+  transition: transform 160ms ease, background-color 200ms ease, opacity 200ms ease;
+  cursor: pointer;
+}
+
+.task-card:active { transform: scale(0.99); }
+
+.task-card--normal { min-height: 68px; }
+.task-card--large {
+  min-height: 96px;
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card-redup);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FBFAFE 100%);
+}
+
+.task-card.is-done { opacity: 0.55; }
+.task-card.is-done .task-card__title { text-decoration: line-through; color: var(--text-tertiary); }
+
+.task-card__check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-default);
+  background: transparent;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.task-card--large .task-card__check {
+  width: 26px;
+  height: 26px;
+  border-color: var(--energy-redup);
+  border-width: 1.5px;
+}
+
+.task-card__check.is-checked {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+}
+.task-card--large .task-card__check.is-checked {
+  background: var(--energy-redup);
+  border-color: var(--energy-redup);
+}
+
+.task-card__tick {
+  color: var(--text-inverse);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.task-card__body { flex: 1; min-width: 0; }
+
+.task-card__title {
+  font-size: calc(15px * var(--text-scale));
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+  letter-spacing: -0.1px;
+}
+.task-card--large .task-card__title {
+  font-size: calc(17px * var(--text-scale));
+  font-weight: 500;
+}
+
+.task-card__meta {
+  margin-top: 4px;
+  font-size: calc(12px * var(--text-scale));
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+.task-card--large .task-card__meta {
+  font-size: calc(13px * var(--text-scale));
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+.task-card__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

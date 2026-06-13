@@ -1,0 +1,175 @@
+.settings-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg-base);
+}
+
+.settings-screen__inner {
+  padding: 8px var(--screen-padding) 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settings-screen__title { margin: 8px 0 0; }
+.settings-screen__sub { margin: 0; }
+
+.settings-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin-top: 6px;
+}
+
+.settings-card--padded {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-card__title { margin: 0; }
+.settings-card__hint { margin: 4px 0 0; }
+
+/* Segmented control */
+.seg-control {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: var(--bg-muted);
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.seg-control__opt {
+  padding: 10px 8px;
+  font-size: calc(14px * var(--text-scale));
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: 9px;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.seg-control__opt.is-active {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Reassurance card */
+.settings-reassure {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--success-soft);
+  border-radius: var(--radius-md);
+  color: #14532D;
+}
+.settings-reassure__icon { font-size: 22px; }
+.settings-reassure__text {
+  font-size: calc(14px * var(--text-scale));
+  font-weight: 500;
+}
+
+/* Theme mode cards */
+.theme-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.theme-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color 200ms ease, background-color 200ms ease, transform 160ms ease;
+}
+.theme-mode:active { transform: scale(0.98); }
+.theme-mode.is-active {
+  border-color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+.theme-mode__preview {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+}
+.theme-mode__preview--light { background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%); }
+.theme-mode__preview--dark  { background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); }
+.theme-mode__preview--auto  { background: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 49%, #1E293B 51%, #0F172A 100%); }
+.theme-mode__label {
+  font-size: calc(13px * var(--text-scale));
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Accent swatches */
+.swatches {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  background-clip: padding-box;
+  transition: transform 160ms ease, border-color 180ms ease;
+  position: relative;
+}
+.swatch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--swatch-color);
+}
+.swatch.is-active { border-color: var(--text-primary); transform: scale(1.05); }
+
+/* FAQ search */
+.faq-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
+}
+.faq-search__icon { color: var(--text-tertiary); font-size: 16px; }
+.faq-search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: calc(15px * var(--text-scale));
+  color: var(--text-primary);
+  background: transparent;
+}
+
+/* Footer brand */
+.settings-brand {
+  text-align: center;
+  padding: 28px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.settings-brand__name {
+  font-size: calc(13px * var(--text-scale));
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: var(--text-secondary);
+}
+.settings-brand__ver { font-size: calc(11px * var(--text-scale)); color: var(--text-tertiary); }

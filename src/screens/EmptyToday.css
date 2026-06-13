@@ -1,0 +1,24 @@
+.empty-today {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 24px var(--screen-padding);
+  text-align: center;
+  gap: 14px;
+}
+
+.empty-today__title {
+  margin: 8px 0 0;
+  letter-spacing: -0.4px;
+}
+
+.empty-today__body {
+  margin: 0;
+  max-width: 280px;
+}
+
+.empty-today__actions {
+  margin-top: 14px;
+}

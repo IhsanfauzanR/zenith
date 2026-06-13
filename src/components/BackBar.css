@@ -1,0 +1,26 @@
+.back-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--screen-padding) 8px;
+  background: var(--bg-base);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.back-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: calc(14px * var(--text-scale));
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 6px 8px 6px 0;
+}
+
+.back-bar__title {
+  font-size: calc(14px * var(--text-scale));
+  font-weight: 500;
+  color: var(--text-tertiary);
+}

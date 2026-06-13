@@ -1,0 +1,21 @@
+.energy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-chip);
+  font-size: calc(13px * var(--text-scale));
+  font-weight: 500;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.energy-chip:active { transform: scale(0.97); }
+
+.energy-chip__emoji { font-size: 14px; line-height: 1; }
+.energy-chip__sep { color: var(--text-tertiary); }
+.energy-chip__action {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-decoration-color: rgba(71, 85, 105, 0.3);
+  text-underline-offset: 2px;
+}

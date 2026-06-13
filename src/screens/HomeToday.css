@@ -1,0 +1,79 @@
+.home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  transition: background-color 400ms ease;
+}
+
+.home__screen { background: transparent; }
+
+.home__inner {
+  padding: 32px var(--screen-padding) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.home__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home__date { margin: 0; }
+
+.home__greeting {
+  margin: 2px 0 0;
+  transition: font-size 220ms ease;
+}
+
+.home__chip-row {
+  margin-top: 6px;
+}
+
+.home__context {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  letter-spacing: -0.1px;
+}
+
+.home__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.home__hint {
+  margin: 14px 0 0;
+  text-align: center;
+  padding: 0 8px;
+}
+
+/* === ADAPTIF PER ENERGI === */
+
+/* CERAH — bg sedikit hangat, list lebih padat */
+.home--cerah {
+  background:
+    radial-gradient(160% 220px at 50% 0, rgba(245, 158, 11, 0.05), transparent 70%),
+    var(--bg-base);
+}
+.home--cerah .home__list { gap: 10px; }
+
+/* BERAWAN — netral */
+.home--berawan {
+  background: var(--bg-base);
+}
+
+/* REDUP — lebih muted, lebih lega */
+.home--redup {
+  background:
+    radial-gradient(160% 280px at 50% 0, rgba(124, 58, 237, 0.06), transparent 75%),
+    #FAFAFB;
+}
+.home--redup .home__greeting { font-size: calc(24px * var(--text-scale)); }
+.home--redup .home__inner { gap: 22px; padding-top: 36px; }
+.home--redup .home__list { gap: 14px; }
+.home--redup .home__context { color: var(--text-secondary); }

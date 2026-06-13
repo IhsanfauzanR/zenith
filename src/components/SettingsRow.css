@@ -1,0 +1,61 @@
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color 160ms ease;
+  min-height: 56px;
+}
+.settings-row:last-child { border-bottom: none; }
+.settings-row:active { background: var(--bg-muted); }
+
+.settings-row__icon {
+  font-size: 18px;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.settings-row__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-row__title {
+  font-size: calc(15px * var(--text-scale));
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.settings-row__hint {
+  font-size: calc(12px * var(--text-scale));
+  color: var(--text-tertiary);
+}
+
+.settings-row__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.settings-row__value {
+  font-size: calc(14px * var(--text-scale));
+  color: var(--text-secondary);
+}
+
+.settings-row__chev {
+  color: var(--text-tertiary);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.settings-row.is-danger .settings-row__title { color: var(--danger); }
+.settings-row.is-danger .settings-row__icon { color: var(--danger); }

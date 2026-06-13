@@ -1,0 +1,23 @@
+.empty-illust {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.empty-illust__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow) 0%, transparent 65%);
+  opacity: 0.15;
+  filter: blur(8px);
+}
+
+.empty-illust__emoji {
+  position: relative;
+  font-size: 64px;
+  opacity: 0.7;
+  filter: saturate(0.85);
+}

@@ -1,0 +1,87 @@
+.picker {
+  padding-top: 36px;
+  padding-bottom: 28px;
+  gap: 0;
+}
+
+.picker__header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
+.picker__title { margin: 4px 0 0; }
+.picker__sub { margin: 8px 0 0; }
+
+.picker__options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.picker__card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 18px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  position: relative;
+  transition: transform 180ms ease, background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  box-shadow: var(--shadow-card);
+}
+.picker__card:active { transform: scale(0.985); }
+.picker__card.is-selected {
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.picker__emoji-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+  transition: background-color 220ms ease;
+}
+
+.picker__card-body { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.picker__card-label {
+  font-size: calc(18px * var(--text-scale));
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+.picker__card-desc {
+  font-size: calc(14px * var(--text-scale));
+  color: var(--text-secondary);
+}
+
+.picker__badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.picker__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.picker__hint {
+  font-size: calc(13px * var(--text-scale));
+  color: var(--text-tertiary);
+  margin: 0;
+}
