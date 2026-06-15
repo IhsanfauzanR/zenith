@@ -15,16 +15,11 @@ export default function PrivacySettings() {
         <div className="settings-screen__inner">
           <h1 className="t-h1 settings-screen__title">Privasi & data</h1>
 
-          <article className="settings-reassure">
-            <span className="settings-reassure__icon" aria-hidden="true">🔒</span>
-            <span className="settings-reassure__text">Tersimpan di perangkatmu.</span>
-          </article>
-
           <section className="settings-card">
             <SettingsRow
               variant="toggle"
               title="Cadangkan ke cloud"
-              hint="Terenkripsi end-to-end (opsional)"
+              hint="Terenkripsi end-to-end"
               on={settings.cloudBackup}
               onChange={() => toggleSetting('cloudBackup')}
             />

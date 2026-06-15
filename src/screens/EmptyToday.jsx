@@ -6,18 +6,18 @@ import './EmptyToday.css';
 const COPY = {
   cerah: {
     emoji: '☀️',
-    title: 'Hari yang lapang.',
-    body: 'Belum ada agenda hari ini. Mau isi dengan satu hal yang berarti?',
+    title: 'Hari yang kosong.',
+    body: 'Belum ada tugas. Mau tambah satu sekarang?',
   },
   berawan: {
     emoji: '⛅',
     title: 'Belum ada rencana.',
-    body: 'Tidak perlu buru-buru mengisinya. Tambahkan saat kamu siap.',
+    body: 'Tambahkan kapan saja, tidak harus sekarang.',
   },
   redup: {
     emoji: '🌙',
-    title: 'Hari ini lebih pelan.',
-    body: 'Tidak harus banyak. Satu langkah kecil pun sudah cukup berarti.',
+    title: 'Hari yang pelan.',
+    body: 'Tidak harus diisi. Satu tugas kecil juga cukup.',
   },
 };
 

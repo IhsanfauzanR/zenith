@@ -1,15 +1,18 @@
+import { useState } from 'react';
 import Screen from '../components/Screen.jsx';
 import EnergyChip from '../components/EnergyChip.jsx';
 import TaskCard from '../components/TaskCard.jsx';
 import BottomNav from '../components/BottomNav.jsx';
 import EmptyToday from './EmptyToday.jsx';
+import ConfirmDialog from '../components/ConfirmDialog.jsx';
 import useDoubleTap from '../components/useDoubleTap.js';
 import { useApp } from '../context/AppContext.jsx';
 import { ENERGY_CONFIG, selectTasksForEnergy, TODAY_DATE_LABEL } from '../data/data.js';
 import './HomeToday.css';
 
 export default function HomeToday() {
-  const { energy, tasks, navigate, settings, openTaskDetail, demoMode, toggleDemoEmpty } = useApp();
+  const { energy, tasks, navigate, settings, openTaskDetail, demoMode, toggleDemoEmpty, deleteTask } = useApp();
+  const [taskToDelete, setTaskToDelete] = useState(null);
 
   const activeEnergy = energy || 'berawan';
   const cfg = ENERGY_CONFIG[activeEnergy];
@@ -19,6 +22,11 @@ export default function HomeToday() {
   const isEmpty = demoMode.todayEmpty || shownTasks.length === 0;
 
   const handleTitleDoubleTap = useDoubleTap(() => toggleDemoEmpty('todayEmpty'));
+
+  const handleConfirmDelete = () => {
+    if (taskToDelete) deleteTask(taskToDelete.id);
+    setTaskToDelete(null);
+  };
 
   const Header = (
     <header className="home__header">
@@ -59,6 +67,7 @@ export default function HomeToday() {
                   size={cfg.cardSize}
                   showPriorityDot={cfg.showPriorityDot}
                   onClick={() => openTaskDetail(task.id)}
+                  onLongPress={(t) => setTaskToDelete(t)}
                 />
               ))}
             </section>
@@ -70,6 +79,17 @@ export default function HomeToday() {
         )}
       </Screen>
       <BottomNav />
+
+      <ConfirmDialog
+        open={!!taskToDelete}
+        title="Hapus tugas ini?"
+        message={taskToDelete ? `"${taskToDelete.title}" akan dihapus dari daftarmu.` : ''}
+        confirmLabel="Ya"
+        cancelLabel="Tidak"
+        tone="danger"
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setTaskToDelete(null)}
+      />
     </div>
   );
 }

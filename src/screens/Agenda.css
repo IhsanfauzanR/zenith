@@ -97,6 +97,11 @@
   transition: transform 160ms ease;
 }
 .agenda-item:active { transform: scale(0.99); }
+.agenda-item.is-pressing {
+  transform: scale(0.97);
+  opacity: 0.85;
+  transition-duration: 280ms;
+}
 
 .agenda-item__bar {
   width: 4px;

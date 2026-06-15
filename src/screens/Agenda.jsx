@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import Screen from '../components/Screen.jsx';
 import Button from '../components/Button.jsx';
 import BottomNav from '../components/BottomNav.jsx';
 import EmptyIllustration from '../components/EmptyIllustration.jsx';
+import ConfirmDialog from '../components/ConfirmDialog.jsx';
 import useDoubleTap from '../components/useDoubleTap.js';
+import useLongPress from '../components/useLongPress.js';
 import { useApp } from '../context/AppContext.jsx';
-import { AGENDA } from '../data/data.js';
 import './Agenda.css';
 
 const DAYS = [
@@ -23,12 +25,37 @@ const ENERGY_BAR = {
   redup: 'var(--energy-redup)',
 };
 
+function AgendaItem({ item, onClick, onLongPress }) {
+  const { isPressing, handlers } = useLongPress(() => onLongPress?.(item));
+  return (
+    <article
+      className={`agenda-item ${isPressing ? 'is-pressing' : ''}`}
+      onClick={onClick}
+      {...handlers}
+    >
+      <span className="agenda-item__bar" style={{ background: ENERGY_BAR[item.energy] }} />
+      <div className="agenda-item__body">
+        <div className="agenda-item__time">{item.time}</div>
+        <div className="agenda-item__title">{item.title}</div>
+        <div className="agenda-item__meta">{item.category}</div>
+      </div>
+    </article>
+  );
+}
+
 export default function Agenda() {
-  const { navigate, openTaskDetail, demoMode, toggleDemoEmpty } = useApp();
-  const items = demoMode.agendaEmpty ? [] : AGENDA;
+  const { navigate, openTaskDetail, demoMode, toggleDemoEmpty, agenda, deleteAgenda } = useApp();
+  const [itemToDelete, setItemToDelete] = useState(null);
+
+  const items = demoMode.agendaEmpty ? [] : agenda;
   const isEmpty = items.length === 0;
   const todayIdx = 4; // Jumat = index 4
   const handleTitleDoubleTap = useDoubleTap(() => toggleDemoEmpty('agendaEmpty'));
+
+  const handleConfirmDelete = () => {
+    if (itemToDelete) deleteAgenda(itemToDelete.id);
+    setItemToDelete(null);
+  };
 
   return (
     <div className="agenda-screen">
@@ -63,7 +90,7 @@ export default function Agenda() {
               <EmptyIllustration emoji="📭" glowColor="var(--brand-primary)" size={200} />
               <h2 className="t-h2 agenda-empty__title">Belum ada jadwal.</h2>
               <p className="t-body t-secondary agenda-empty__body">
-                Tambahkan tugas dan atur waktunya, agar harimu lebih terbaca.
+                Tambah tugas dan atur waktunya di sini.
               </p>
               <div className="agenda-empty__actions">
                 <Button onClick={() => navigate('create-task')} fullWidth={false} style={{ minWidth: 220 }}>
@@ -76,18 +103,12 @@ export default function Agenda() {
               <h3 className="t-title agenda-day-label">Jumat, 24 Mei</h3>
               <section className="agenda-list" aria-label="Daftar agenda hari ini">
                 {items.map(it => (
-                  <article
+                  <AgendaItem
                     key={it.id}
-                    className="agenda-item"
+                    item={it}
                     onClick={() => openTaskDetail(it.taskId)}
-                  >
-                    <span className="agenda-item__bar" style={{ background: ENERGY_BAR[it.energy] }} />
-                    <div className="agenda-item__body">
-                      <div className="agenda-item__time">{it.time}</div>
-                      <div className="agenda-item__title">{it.title}</div>
-                      <div className="agenda-item__meta">{it.category}</div>
-                    </div>
-                  </article>
+                    onLongPress={(item) => setItemToDelete(item)}
+                  />
                 ))}
               </section>
             </>
@@ -102,6 +123,17 @@ export default function Agenda() {
       )}
 
       <BottomNav />
+
+      <ConfirmDialog
+        open={!!itemToDelete}
+        title="Hapus agenda ini?"
+        message={itemToDelete ? `"${itemToDelete.title}" pukul ${itemToDelete.time} akan dihapus dari jadwalmu.` : ''}
+        confirmLabel="Ya"
+        cancelLabel="Tidak"
+        tone="danger"
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setItemToDelete(null)}
+      />
     </div>
   );
 }

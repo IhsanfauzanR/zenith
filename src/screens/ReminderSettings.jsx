@@ -15,7 +15,7 @@ export default function ReminderSettings() {
         <div className="settings-screen__inner">
           <h1 className="t-h1 settings-screen__title">Pengingat lembut</h1>
           <p className="t-body t-secondary settings-screen__sub">
-            Hanya sapaan kecil, bukan tekanan.
+            Pengingat ringan untuk hari kamu.
           </p>
 
           <section className="settings-card">
@@ -75,7 +75,7 @@ export default function ReminderSettings() {
           </section>
 
           <p className="t-caption t-tertiary settings-screen__sub" style={{ textAlign: 'center', marginTop: 8 }}>
-            Kamu boleh diam. Zenith tidak akan memaksa.
+            Notifnya seperlunya saja.
           </p>
         </div>
       </Screen>

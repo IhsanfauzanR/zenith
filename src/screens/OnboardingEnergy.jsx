@@ -29,12 +29,12 @@ export default function OnboardingEnergy() {
           Setiap hari punya cuacanya sendiri.
         </h2>
         <p className="t-body-lg t-secondary">
-          Kadang kamu cerah, kadang berawan, kadang redup. Zenith mengikuti — bukan menuntutmu untuk selalu produktif.
+          Cerah, berawan, atau redup. Zenith ikut yang kamu pilih hari itu.
         </p>
       </div>
 
       <div className="onb-energy__actions">
-        <Button onClick={() => navigate('login')}>Lanjut</Button>
+        <Button onClick={() => navigate('onboarding-explained')}>Lanjut</Button>
       </div>
     </Screen>
   );

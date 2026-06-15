@@ -20,7 +20,7 @@ export default function SensoryReduced() {
         <div className="settings-screen__inner">
           <h1 className="t-h1 settings-screen__title">Kenyamanan visual</h1>
           <p className="t-body t-secondary settings-screen__sub">
-            Sesuaikan tampilan agar terasa lebih lembut di mata.
+            Sesuaikan tampilan biar enak dilihat.
           </p>
 
           <section className="settings-card">

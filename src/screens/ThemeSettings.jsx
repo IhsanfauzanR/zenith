@@ -19,12 +19,6 @@ const ACCENTS = [
   { id: 'green',  color: '#16A34A' },
 ];
 
-const SIZES = [
-  { id: 'standard', label: 'Standar' },
-  { id: 'medium',   label: 'Sedang' },
-  { id: 'large',    label: 'Besar' },
-];
-
 export default function ThemeSettings() {
   const { settings, setSetting, toggleSetting } = useApp();
 
@@ -69,23 +63,7 @@ export default function ThemeSettings() {
             </div>
           </section>
 
-          <SectionLabel>Ukuran teks</SectionLabel>
-          <section className="settings-card settings-card--padded">
-            <div className="seg-control">
-              {SIZES.map(s => (
-                <button
-                  key={s.id}
-                  type="button"
-                  className={`seg-control__opt ${settings.textSize === s.id ? 'is-active' : ''}`}
-                  onClick={() => setSetting('textSize', s.id)}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
-          </section>
-
-          <section className="settings-card">
+          <section className="settings-card" style={{ marginTop: 12 }}>
             <SettingsRow
               variant="toggle"
               title="Kurangi transparansi"
@@ -94,11 +72,6 @@ export default function ThemeSettings() {
               onChange={() => toggleSetting('reduceTransparency')}
             />
           </section>
-
-          <article className="settings-reassure" style={{ marginTop: 12 }}>
-            <span className="settings-reassure__icon" aria-hidden="true">✨</span>
-            <span className="settings-reassure__text">Perubahan langsung terlihat.</span>
-          </article>
         </div>
       </Screen>
     </div>

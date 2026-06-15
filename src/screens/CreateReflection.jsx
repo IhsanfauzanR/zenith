@@ -68,7 +68,7 @@ export default function CreateReflection() {
           </div>
 
           <p className="t-caption create-reflect__note">
-            Tidak ada jawaban benar atau salah. Ini ruang milikmu.
+            Tulis apa adanya. Tidak ada yang membaca selain kamu.
           </p>
 
           <div className="create-reflect__actions">

@@ -12,25 +12,34 @@
   padding-top: 32px;
 }
 
-.onb-welcome__hero {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
+.onb-welcome__mark {
+  width: 156px;
+  height: 156px;
   position: relative;
-  background:
-    radial-gradient(circle at 35% 35%, #818CF8 0%, #6366F1 35%, #3B82F6 70%, #1E3A8A 100%);
-  box-shadow:
-    0 20px 50px rgba(99, 102, 241, 0.35),
-    inset -10px -14px 30px rgba(30, 58, 138, 0.45),
-    inset 8px 8px 30px rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary);
 }
 
-.onb-welcome__hero-glow {
+.onb-welcome__mark-glow {
   position: absolute;
-  inset: -30px;
+  inset: -16px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, transparent 65%);
-  z-index: -1;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 70%);
+  filter: blur(4px);
+  z-index: 0;
+}
+
+.onb-welcome__mark-svg {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode: warna logo jadi biru cerah agar tetap kontras */
+[data-theme='dark'] .onb-welcome__mark { color: #60A5FA; }
+[data-theme='dark'] .onb-welcome__mark-glow {
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.22) 0%, rgba(99, 102, 241, 0.10) 45%, transparent 70%);
 }
 
 .onb-welcome__brand {

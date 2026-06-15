@@ -1,5 +1,6 @@
 import Screen from '../components/Screen.jsx';
 import Button from '../components/Button.jsx';
+import ZenithMark from '../components/ZenithMark.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import './OnboardingWelcome.css';
 
@@ -8,19 +9,20 @@ export default function OnboardingWelcome() {
   return (
     <Screen className="onb-welcome">
       <div className="onb-welcome__top">
-        <div className="onb-welcome__hero" aria-hidden="true">
-          <div className="onb-welcome__hero-glow" />
+        <div className="onb-welcome__mark">
+          <div className="onb-welcome__mark-glow" aria-hidden="true" />
+          <ZenithMark size={132} strokeWidth={4.5} className="onb-welcome__mark-svg" />
         </div>
         <div className="onb-welcome__brand">ZENITH</div>
       </div>
 
       <div className="onb-welcome__copy">
         <h1 className="t-display onb-welcome__headline">
-          Ruang istirahat<br />untuk pikiranmu.
+          Tugas yang ikut<br />cuaca harimu.
         </h1>
         <p className="t-body-lg t-secondary onb-welcome__sub">
-          Bukan lagi daftar tugas yang menuntut.<br />
-          Ini ruang yang menyesuaikan dengan harimu.
+          Pilih cuacamu dulu.<br />
+          Zenith pilihkan tugas yang masuk akal.
         </p>
       </div>
 

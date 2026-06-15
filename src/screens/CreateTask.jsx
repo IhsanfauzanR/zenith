@@ -65,12 +65,12 @@ export default function CreateTask() {
               <span aria-hidden="true">🪶</span> DARI ZENITH
             </p>
             <p className="create-task__hint-body">
-              Tuliskan saja apa yang ada di pikiranmu. Biar Zenith yang menata sisanya — kapan dan bagaimana sebaiknya dikerjakan.
+              Tulis dulu yang muncul di kepala. Kapan dan bagaimana bisa diatur nanti.
             </p>
           </article>
 
           <p className="create-task__note t-caption t-tertiary">
-            Tenang, kamu tak harus mengerjakannya hari ini.
+            Tidak harus dikerjakan hari ini.
           </p>
 
           <div className="create-task__actions">

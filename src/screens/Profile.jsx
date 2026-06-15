@@ -35,8 +35,8 @@ export default function Profile() {
           <article className="profile-summary">
             <span className="profile-summary__icon" aria-hidden="true">🌿</span>
             <div className="profile-summary__body">
-              <p className="t-title profile-summary__line">{USER.daysWithZenith} hari bersama Zenith</p>
-              <p className="t-caption profile-summary__sub">Tanpa sekalipun memaksa diri</p>
+              <p className="t-title profile-summary__line">{USER.daysWithZenith} hari pakai Zenith</p>
+              <p className="t-caption profile-summary__sub">Sesuai energi yang kamu punya</p>
             </div>
           </article>
 

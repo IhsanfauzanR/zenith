@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useLongPress from './useLongPress.js';
 import './TaskCard.css';
 
 const PRIORITY_COLOR = {
@@ -7,7 +8,7 @@ const PRIORITY_COLOR = {
   low: 'var(--energy-redup)',
 };
 
-export default function TaskCard({ task, energy = 'berawan', showPriorityDot = true, size = 'normal', onClick }) {
+export default function TaskCard({ task, energy = 'berawan', showPriorityDot = true, size = 'normal', onClick, onLongPress }) {
   const [done, setDone] = useState(false);
 
   const handleToggle = (e) => {
@@ -15,13 +16,16 @@ export default function TaskCard({ task, energy = 'berawan', showPriorityDot = t
     setDone(d => !d);
   };
 
+  const { isPressing, handlers } = useLongPress(() => onLongPress?.(task));
+
   return (
     <div
-      className={`task-card task-card--${size} ${done ? 'is-done' : ''}`}
+      className={`task-card task-card--${size} ${done ? 'is-done' : ''} ${isPressing ? 'is-pressing' : ''}`}
       onClick={onClick}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter') onClick?.(); }}
+      {...handlers}
     >
       <button
         type="button"

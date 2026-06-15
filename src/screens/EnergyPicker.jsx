@@ -25,7 +25,7 @@ export default function EnergyPicker() {
         <p className="t-caption t-tertiary">Halo, {USER.name}.</p>
         <h1 className="t-h1 picker__title">Cuaca hari ini seperti apa?</h1>
         <p className="t-body t-secondary picker__sub">
-          Tidak ada jawaban benar. Pilih yang paling jujur dengan tubuhmu.
+          Pilih yang paling cocok dengan energimu sekarang.
         </p>
       </header>
 

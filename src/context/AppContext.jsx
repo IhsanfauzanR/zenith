@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useReducer, useCallback } from 'react';
-import { TASKS, REFLECTIONS } from '../data/data.js';
+import { TASKS, REFLECTIONS, AGENDA } from '../data/data.js';
 
 const AppContext = createContext(null);
 
@@ -30,6 +30,7 @@ const INITIAL_STATE = {
     anonAnalytics: false,
   },
   tasks: TASKS,
+  agenda: AGENDA,
   reflections: REFLECTIONS,
   // Demo mode untuk presentasi — toggle empty state per tab via gesture
   demoMode: {
@@ -77,6 +78,12 @@ function reducer(state, action) {
       return { ...state, selectedTaskId: action.id };
     case 'ADD_TASK':
       return { ...state, tasks: [action.task, ...state.tasks] };
+    case 'DELETE_TASK':
+      return { ...state, tasks: state.tasks.filter(t => t.id !== action.id) };
+    case 'DELETE_AGENDA':
+      return { ...state, agenda: state.agenda.filter(a => a.id !== action.id) };
+    case 'DELETE_REFLECTION':
+      return { ...state, reflections: state.reflections.filter(r => r.id !== action.id) };
     case 'ADD_REFLECTION':
       return { ...state, reflections: [action.reflection, ...state.reflections] };
     case 'TOGGLE_DEMO_EMPTY':
@@ -114,7 +121,10 @@ export function AppProvider({ children }) {
   const setSetting = useCallback((key, value) => dispatch({ type: 'SET_SETTING', key, value }), []);
   const selectTask = useCallback((id) => dispatch({ type: 'SELECT_TASK', id }), []);
   const addTask = useCallback((task) => dispatch({ type: 'ADD_TASK', task }), []);
+  const deleteTask = useCallback((id) => dispatch({ type: 'DELETE_TASK', id }), []);
+  const deleteAgenda = useCallback((id) => dispatch({ type: 'DELETE_AGENDA', id }), []);
   const addReflection = useCallback((reflection) => dispatch({ type: 'ADD_REFLECTION', reflection }), []);
+  const deleteReflection = useCallback((id) => dispatch({ type: 'DELETE_REFLECTION', id }), []);
   const toggleDemoEmpty = useCallback((key) => dispatch({ type: 'TOGGLE_DEMO_EMPTY', key }), []);
 
   const openTaskDetail = useCallback((id) => {
@@ -133,10 +143,13 @@ export function AppProvider({ children }) {
     setSetting,
     selectTask,
     addTask,
+    deleteTask,
+    deleteAgenda,
     addReflection,
+    deleteReflection,
     toggleDemoEmpty,
     openTaskDetail,
-  }), [state, navigate, navigateBack, replaceScreen, setEnergy, setTab, toggleSetting, setSetting, selectTask, addTask, addReflection, toggleDemoEmpty, openTaskDetail]);
+  }), [state, navigate, navigateBack, replaceScreen, setEnergy, setTab, toggleSetting, setSetting, selectTask, addTask, deleteTask, deleteAgenda, addReflection, deleteReflection, toggleDemoEmpty, openTaskDetail]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }

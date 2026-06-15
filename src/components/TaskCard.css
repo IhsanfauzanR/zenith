@@ -13,6 +13,13 @@
 
 .task-card:active { transform: scale(0.99); }
 
+/* Feedback saat long-press berjalan — kartu sedikit mengecil & redup */
+.task-card.is-pressing {
+  transform: scale(0.97);
+  opacity: 0.85;
+  transition-duration: 280ms;
+}
+
 .task-card--normal { min-height: 68px; }
 .task-card--large {
   min-height: 96px;

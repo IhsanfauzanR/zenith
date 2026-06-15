@@ -1,0 +1,115 @@
+.onb-explained {
+  padding-top: 28px;
+  padding-bottom: 28px;
+  gap: 18px;
+}
+
+.onb-explained__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.onb-explained__dots { display: inline-flex; gap: 6px; align-items: center; }
+.onb-explained__dots .dot {
+  width: 8px; height: 8px; border-radius: 999px;
+  background: var(--border-default);
+  transition: width 220ms ease, background-color 220ms ease;
+}
+.onb-explained__dots .dot--active {
+  width: 22px;
+  background: var(--text-primary);
+}
+
+.onb-explained__skip {
+  font-size: calc(14px * var(--text-scale));
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 6px 10px;
+}
+
+.onb-explained__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+.onb-explained__headline { margin: 0; letter-spacing: -0.4px; }
+.onb-explained__sub { margin: 0; }
+
+.onb-explained__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.energy-explain {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.energy-explain__top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.energy-explain__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.energy-explain__title-block { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.energy-explain__title { margin: 0; line-height: 1.2; }
+.energy-explain__desc {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: calc(14px * var(--text-scale));
+}
+
+.energy-explain__divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 0;
+}
+
+.energy-explain__footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.energy-explain__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.energy-explain__note {
+  font-size: calc(14px * var(--text-scale));
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.onb-explained__foot {
+  margin: 8px 0 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.onb-explained__actions { padding-top: 6px; }

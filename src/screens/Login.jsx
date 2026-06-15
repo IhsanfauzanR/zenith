@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Screen from '../components/Screen.jsx';
 import Button from '../components/Button.jsx';
+import ZenithMark from '../components/ZenithMark.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import './Login.css';
 
@@ -11,7 +12,9 @@ export default function Login() {
 
   return (
     <Screen className="login">
-      <div className="login__hero" aria-hidden="true" />
+      <div className="login__hero">
+        <ZenithMark size={52} strokeWidth={5} />
+      </div>
 
       <header className="login__head">
         <h1 className="t-h1 login__title">Selamat datang kembali</h1>

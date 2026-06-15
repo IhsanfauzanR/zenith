@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AppProvider, useApp } from './context/AppContext.jsx';
 import OnboardingWelcome from './screens/OnboardingWelcome.jsx';
 import OnboardingEnergy from './screens/OnboardingEnergy.jsx';
+import OnboardingEnergyExplained from './screens/OnboardingEnergyExplained.jsx';
 import Login from './screens/Login.jsx';
 import EnergyPicker from './screens/EnergyPicker.jsx';
 import HomeToday from './screens/HomeToday.jsx';
@@ -20,6 +21,7 @@ import HelpSettings from './screens/HelpSettings.jsx';
 const SCREENS = {
   'onboarding-welcome': OnboardingWelcome,
   'onboarding-energy': OnboardingEnergy,
+  'onboarding-explained': OnboardingEnergyExplained,
   'login': Login,
   'energy-picker': EnergyPicker,
   'home-today': HomeToday,
