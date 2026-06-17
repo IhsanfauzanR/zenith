@@ -1,27 +1,42 @@
 import { useState } from 'react';
 import Screen from '../components/Screen.jsx';
 import Button from '../components/Button.jsx';
+import DeadlineField from '../components/DeadlineField.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import './CreateTask.css';
 
 export default function CreateTask() {
-  const { navigateBack, addTask } = useApp();
+  const { navigateBack, addTask, addAgenda } = useApp();
   const [title, setTitle] = useState('');
   const [note, setNote] = useState('');
+  const [dueDate, setDueDate] = useState(null);
+  const [time, setTime] = useState('');
 
   const canSave = title.trim().length > 0;
 
   const handleSave = () => {
     if (!canSave) return;
+    const ts = Date.now();
+    const taskId = 't' + ts;
     addTask({
-      id: 't' + Date.now(),
+      id: taskId,
       title: title.trim(),
       category: 'Hidup',
       estMinutes: 15,
       priority: 'low',
       fitsEnergy: ['cerah', 'berawan', 'redup'],
       note: note.trim(),
+      dueDate,
+      time: time || '',
       suggestion: 'Mulai dari bagian yang paling mudah dulu.',
+    });
+    addAgenda({
+      id: 'a' + ts,
+      time: time || '—',
+      title: title.trim(),
+      category: 'Hidup',
+      energy: 'berawan',
+      taskId,
     });
     navigateBack();
   };
@@ -59,6 +74,21 @@ export default function CreateTask() {
               rows={3}
             />
           </label>
+
+          <label className="create-task__field">
+            <span className="create-task__label">Jam</span>
+            <input
+              type="time"
+              className="create-task__input create-task__time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+          </label>
+
+          <div className="create-task__field">
+            <span className="create-task__label">Tenggat</span>
+            <DeadlineField value={dueDate} onChange={setDueDate} />
+          </div>
 
           <article className="create-task__hint-card">
             <p className="create-task__hint-label">

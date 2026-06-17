@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   activeTab: 'today',
   history: [], // stack of previous screens for back navigation
   selectedTaskId: null,
+  selectedReflectionId: null,
   settings: {
     // accessibility
     reduceMotion: true,
@@ -78,8 +79,29 @@ function reducer(state, action) {
       return { ...state, selectedTaskId: action.id };
     case 'ADD_TASK':
       return { ...state, tasks: [action.task, ...state.tasks] };
+    case 'UPDATE_TASK':
+      return {
+        ...state,
+        tasks: state.tasks.map(t => (t.id === action.id ? { ...t, ...action.changes } : t)),
+      };
     case 'DELETE_TASK':
       return { ...state, tasks: state.tasks.filter(t => t.id !== action.id) };
+    case 'SELECT_REFLECTION':
+      return { ...state, selectedReflectionId: action.id };
+    case 'UPDATE_REFLECTION':
+      return {
+        ...state,
+        reflections: state.reflections.map(r => (r.id === action.id ? { ...r, ...action.changes } : r)),
+      };
+    case 'ADD_AGENDA':
+      return { ...state, agenda: [...state.agenda, action.item] };
+    case 'UPDATE_AGENDA_BY_TASK':
+      return {
+        ...state,
+        agenda: state.agenda.map(a =>
+          a.taskId === action.taskId ? { ...a, ...action.changes } : a
+        ),
+      };
     case 'DELETE_AGENDA':
       return { ...state, agenda: state.agenda.filter(a => a.id !== action.id) };
     case 'DELETE_REFLECTION':
@@ -121,15 +143,24 @@ export function AppProvider({ children }) {
   const setSetting = useCallback((key, value) => dispatch({ type: 'SET_SETTING', key, value }), []);
   const selectTask = useCallback((id) => dispatch({ type: 'SELECT_TASK', id }), []);
   const addTask = useCallback((task) => dispatch({ type: 'ADD_TASK', task }), []);
+  const updateTask = useCallback((id, changes) => dispatch({ type: 'UPDATE_TASK', id, changes }), []);
   const deleteTask = useCallback((id) => dispatch({ type: 'DELETE_TASK', id }), []);
+  const addAgenda = useCallback((item) => dispatch({ type: 'ADD_AGENDA', item }), []);
+  const updateAgendaByTask = useCallback((taskId, changes) => dispatch({ type: 'UPDATE_AGENDA_BY_TASK', taskId, changes }), []);
   const deleteAgenda = useCallback((id) => dispatch({ type: 'DELETE_AGENDA', id }), []);
   const addReflection = useCallback((reflection) => dispatch({ type: 'ADD_REFLECTION', reflection }), []);
+  const updateReflection = useCallback((id, changes) => dispatch({ type: 'UPDATE_REFLECTION', id, changes }), []);
   const deleteReflection = useCallback((id) => dispatch({ type: 'DELETE_REFLECTION', id }), []);
   const toggleDemoEmpty = useCallback((key) => dispatch({ type: 'TOGGLE_DEMO_EMPTY', key }), []);
 
   const openTaskDetail = useCallback((id) => {
     dispatch({ type: 'SELECT_TASK', id });
     dispatch({ type: 'NAVIGATE', screen: 'task-detail' });
+  }, []);
+
+  const openReflectionDetail = useCallback((id) => {
+    dispatch({ type: 'SELECT_REFLECTION', id });
+    dispatch({ type: 'NAVIGATE', screen: 'reflection-detail' });
   }, []);
 
   const value = useMemo(() => ({
@@ -143,13 +174,18 @@ export function AppProvider({ children }) {
     setSetting,
     selectTask,
     addTask,
+    updateTask,
     deleteTask,
+    addAgenda,
+    updateAgendaByTask,
     deleteAgenda,
     addReflection,
+    updateReflection,
     deleteReflection,
     toggleDemoEmpty,
     openTaskDetail,
-  }), [state, navigate, navigateBack, replaceScreen, setEnergy, setTab, toggleSetting, setSetting, selectTask, addTask, deleteTask, deleteAgenda, addReflection, deleteReflection, toggleDemoEmpty, openTaskDetail]);
+    openReflectionDetail,
+  }), [state, navigate, navigateBack, replaceScreen, setEnergy, setTab, toggleSetting, setSetting, selectTask, addTask, updateTask, deleteTask, addAgenda, updateAgendaByTask, deleteAgenda, addReflection, updateReflection, deleteReflection, toggleDemoEmpty, openTaskDetail, openReflectionDetail]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }

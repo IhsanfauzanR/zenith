@@ -11,6 +11,7 @@ import Reflect from './screens/Reflect.jsx';
 import TaskDetail from './screens/TaskDetail.jsx';
 import CreateTask from './screens/CreateTask.jsx';
 import CreateReflection from './screens/CreateReflection.jsx';
+import ReflectionDetail from './screens/ReflectionDetail.jsx';
 import Profile from './screens/Profile.jsx';
 import SensoryReduced from './screens/SensoryReduced.jsx';
 import ReminderSettings from './screens/ReminderSettings.jsx';
@@ -30,6 +31,7 @@ const SCREENS = {
   'task-detail': TaskDetail,
   'create-task': CreateTask,
   'create-reflection': CreateReflection,
+  'reflection-detail': ReflectionDetail,
   'profile': Profile,
   'sensory-reduced': SensoryReduced,
   'reminder-settings': ReminderSettings,

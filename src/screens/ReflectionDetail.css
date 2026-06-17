@@ -1,0 +1,88 @@
+.reflection-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--energy-redup-soft);
+}
+
+.reflection-detail__topbar {
+  padding: 16px var(--screen-padding) 4px;
+}
+
+.reflection-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: calc(14px * var(--text-scale));
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 8px 8px 8px 0;
+}
+
+.reflection-detail__inner {
+  padding: 10px var(--screen-padding) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reflection-detail__date {
+  color: var(--energy-redup);
+  font-weight: 600;
+  margin: 0;
+}
+
+.reflection-detail__editor {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-card-redup);
+}
+
+.reflection-detail__textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  font-size: calc(16px * var(--text-scale));
+  line-height: 1.6;
+  color: var(--text-primary);
+  min-height: 160px;
+}
+.reflection-detail__textarea::placeholder { color: var(--text-tertiary); }
+
+.reflection-detail__mood {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reflection-detail__mood-label {
+  color: var(--text-tertiary);
+  letter-spacing: 1.6px;
+  margin: 0;
+}
+.reflection-detail__mood-options {
+  display: flex;
+  gap: 10px;
+}
+
+.rd-mood-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: var(--bg-surface);
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-card);
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+.rd-mood-btn.is-selected {
+  border-color: var(--energy-redup);
+  transform: scale(1.05);
+}

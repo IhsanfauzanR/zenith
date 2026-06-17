@@ -66,3 +66,64 @@
   gap: 10px;
   margin-top: 18px;
 }
+
+/* Inline editable (auto-save) — tampil seperti teks, jadi field saat difokus */
+.task-detail__title-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: none;
+  outline: none;
+  padding: 2px 6px;
+  margin: 4px -6px 0;
+  font-family: inherit;
+  letter-spacing: -0.4px;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: background-color 150ms ease;
+}
+.task-detail__note-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  overflow: hidden;
+}
+.task-detail__title-input::placeholder,
+.task-detail__note-input::placeholder {
+  color: var(--text-tertiary);
+}
+.task-detail__title-input:hover,
+.task-detail__title-input:focus {
+  background: var(--bg-muted);
+}
+
+.task-detail__deadline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.task-detail__time-input {
+  height: 52px;
+  border: 1.5px solid var(--border-default);
+  background: var(--bg-surface);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: calc(15px * var(--text-scale));
+  font-family: inherit;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  color-scheme: light;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.task-detail__time-input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}

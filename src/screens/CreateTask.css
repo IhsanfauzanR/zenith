@@ -72,6 +72,11 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
+.create-task__time {
+  cursor: pointer;
+  color-scheme: light;
+}
+
 .create-task__hint-card {
   background: var(--brand-primary-soft);
   border-radius: var(--radius-lg);

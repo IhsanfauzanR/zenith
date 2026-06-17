@@ -1,0 +1,57 @@
+.deadline-field {
+  position: relative;
+}
+
+.deadline-field__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deadline-field__trigger {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid var(--border-default);
+  background: var(--bg-surface);
+  border-radius: 14px;
+  padding: 14px 16px;
+  height: 52px;
+  font-size: calc(15px * var(--text-scale));
+  color: var(--text-primary);
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.deadline-field__trigger:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.deadline-field__trigger:not(.has-value) .deadline-field__text {
+  color: var(--text-tertiary);
+}
+
+.deadline-field__icon { font-size: 18px; line-height: 1; }
+.deadline-field__text { flex: 1; }
+
+.deadline-field__clear {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  background: var(--bg-muted);
+  font-size: 14px;
+}
+
+.deadline-field__popup {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 8px);
+  left: 0;
+}

@@ -25,10 +25,17 @@ function formatReflDate(iso) {
   return `${d} ${MONTHS_ID[(m || 1) - 1]}`;
 }
 
-function ReflectEntry({ entry, onLongPress }) {
+function ReflectEntry({ entry, onOpen, onLongPress }) {
   const { isPressing, handlers } = useLongPress(() => onLongPress?.(entry));
   return (
-    <article className={`reflect-entry ${isPressing ? 'is-pressing' : ''}`} {...handlers}>
+    <article
+      className={`reflect-entry ${isPressing ? 'is-pressing' : ''}`}
+      onClick={() => onOpen?.(entry)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter') onOpen?.(entry); }}
+      {...handlers}
+    >
       <div className="reflect-entry__mood" aria-hidden="true">
         <span>{MOOD_EMOJI[entry.mood] || '🙂'}</span>
       </div>
@@ -41,7 +48,7 @@ function ReflectEntry({ entry, onLongPress }) {
 }
 
 export default function Reflect() {
-  const { reflections, navigate, settings, demoMode, toggleDemoEmpty, deleteReflection } = useApp();
+  const { reflections, navigate, settings, demoMode, toggleDemoEmpty, deleteReflection, openReflectionDetail } = useApp();
   const [reflToDelete, setReflToDelete] = useState(null);
   // Empty hanya saat demo flag aktif — default selalu tampilkan versi terisi
   const isEmpty = demoMode.reflectEmpty || reflections.length === 0;
@@ -120,6 +127,7 @@ export default function Reflect() {
                   <ReflectEntry
                     key={r.id}
                     entry={r}
+                    onOpen={(e) => openReflectionDetail(e.id)}
                     onLongPress={(e) => setReflToDelete(e)}
                   />
                 ))}
