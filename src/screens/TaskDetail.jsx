@@ -10,6 +10,12 @@ function autosize(el) {
   el.style.height = `${el.scrollHeight}px`;
 }
 
+const COMPLEXITY_OPTIONS = [
+  { value: 'ringan', label: 'Ringan' },
+  { value: 'sedang', label: 'Sedang' },
+  { value: 'berat', label: 'Berat' },
+];
+
 export default function TaskDetail() {
   const { tasks, selectedTaskId, navigateBack, updateTask, updateAgendaByTask } = useApp();
   const task = tasks.find(t => t.id === selectedTaskId) || tasks[0];
@@ -35,6 +41,9 @@ export default function TaskDetail() {
   const handleNote = (e) => {
     updateTask(task.id, { note: e.target.value });
     autosize(e.target);
+  };
+  const handleComplexity = (value) => {
+    updateTask(task.id, { complexity: task.complexity === value ? null : value });
   };
 
   return (
@@ -64,6 +73,14 @@ export default function TaskDetail() {
           </p>
 
           <div className="task-detail__deadline">
+            <p className="t-micro task-detail__card-label">TENGGAT</p>
+            <DeadlineField
+              value={task.dueDate || null}
+              onChange={(iso) => updateTask(task.id, { dueDate: iso })}
+            />
+          </div>
+
+          <div className="task-detail__deadline">
             <p className="t-micro task-detail__card-label">JAM</p>
             <input
               type="time"
@@ -77,11 +94,19 @@ export default function TaskDetail() {
           </div>
 
           <div className="task-detail__deadline">
-            <p className="t-micro task-detail__card-label">TENGGAT</p>
-            <DeadlineField
-              value={task.dueDate || null}
-              onChange={(iso) => updateTask(task.id, { dueDate: iso })}
-            />
+            <p className="t-micro task-detail__card-label">BOBOT</p>
+            <div className="complexity-chips">
+              {COMPLEXITY_OPTIONS.map(({ value, label }) => (
+                <button
+                  key={value}
+                  type="button"
+                  className={`complexity-chip complexity-chip--${value} ${task.complexity === value ? 'is-active' : ''}`}
+                  onClick={() => handleComplexity(value)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <article className="task-detail__card task-detail__card--note">

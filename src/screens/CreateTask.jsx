@@ -5,12 +5,19 @@ import DeadlineField from '../components/DeadlineField.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import './CreateTask.css';
 
+const COMPLEXITY_OPTIONS = [
+  { value: 'ringan', label: 'Ringan' },
+  { value: 'sedang', label: 'Sedang' },
+  { value: 'berat', label: 'Berat' },
+];
+
 export default function CreateTask() {
   const { navigateBack, addTask, addAgenda } = useApp();
   const [title, setTitle] = useState('');
   const [note, setNote] = useState('');
   const [dueDate, setDueDate] = useState(null);
   const [time, setTime] = useState('');
+  const [complexity, setComplexity] = useState(null);
 
   const canSave = title.trim().length > 0;
 
@@ -25,6 +32,7 @@ export default function CreateTask() {
       estMinutes: 15,
       priority: 'low',
       fitsEnergy: ['cerah', 'berawan', 'redup'],
+      complexity: complexity || null,
       note: note.trim(),
       dueDate,
       time: time || '',
@@ -75,6 +83,11 @@ export default function CreateTask() {
             />
           </label>
 
+          <div className="create-task__field">
+            <span className="create-task__label">Tenggat</span>
+            <DeadlineField value={dueDate} onChange={setDueDate} />
+          </div>
+
           <label className="create-task__field">
             <span className="create-task__label">Jam</span>
             <input
@@ -86,8 +99,19 @@ export default function CreateTask() {
           </label>
 
           <div className="create-task__field">
-            <span className="create-task__label">Tenggat</span>
-            <DeadlineField value={dueDate} onChange={setDueDate} />
+            <span className="create-task__label">Tingkat kesulitan</span>
+            <div className="complexity-chips">
+              {COMPLEXITY_OPTIONS.map(({ value, label }) => (
+                <button
+                  key={value}
+                  type="button"
+                  className={`complexity-chip complexity-chip--${value} ${complexity === value ? 'is-active' : ''}`}
+                  onClick={() => setComplexity(prev => prev === value ? null : value)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <article className="create-task__hint-card">

@@ -113,3 +113,37 @@
 .create-task__actions {
   margin-top: 12px;
 }
+
+.complexity-chips {
+  display: flex;
+  gap: 8px;
+}
+
+.complexity-chip {
+  flex: 1;
+  padding: 11px 4px;
+  border-radius: 12px;
+  font-size: calc(14px * var(--text-scale));
+  font-weight: 600;
+  border: 1.5px solid var(--border-default);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.complexity-chip--ringan.is-active {
+  background: #16a34a;
+  border-color: transparent;
+  color: #fff;
+}
+.complexity-chip--sedang.is-active {
+  background: #d97706;
+  border-color: transparent;
+  color: #fff;
+}
+.complexity-chip--berat.is-active {
+  background: #dc2626;
+  border-color: transparent;
+  color: #fff;
+}

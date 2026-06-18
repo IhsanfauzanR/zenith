@@ -23,9 +23,9 @@ export default function EnergyPicker() {
     <Screen className="picker">
       <header className="picker__header">
         <p className="t-caption t-tertiary">Halo, {USER.name}.</p>
-        <h1 className="t-h1 picker__title">Cuaca hari ini seperti apa?</h1>
+        <h1 className="t-h1 picker__title">Mood kamu hari ini?</h1>
         <p className="t-body t-secondary picker__sub">
-          Pilih yang paling cocok dengan energimu sekarang.
+          Pilih yang paling cocok dengan kondisimu sekarang.
         </p>
       </header>
 
